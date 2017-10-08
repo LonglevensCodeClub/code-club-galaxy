@@ -4,17 +4,17 @@ const joesPlanet = (updatePlanet) => {
     })
 
     updatePlanet({
-        radius: 10,
         positionX: 100,
     })
-    let radius = 0
+    let radiusAdjust = 0
     setInterval(() => {
+        let radius = 30 + radiusAdjust
         updatePlanet({
             radius
         })
 
-        radius += 2
-        radius %= 200
+        radiusAdjust += 2
+        radiusAdjust %= 10
     }, 100)
     
     let colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']

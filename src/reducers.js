@@ -6,7 +6,7 @@ const defaultPlanet = {
     radius: 10,
     positionX: 200,
     positionY: 200,
-    colour: 'black',
+    colour: 'green',
     textColour: 'white'
 }
 

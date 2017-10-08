@@ -12,7 +12,15 @@ const Canvas = (props) => {
                         cx={0} 
                         cy={0}
                         fill={planet.colour}/> 
-                    <text fontFamily="Verdana" fontSize="35" fill={planet.textColour}>{id}</text>
+                    <text
+                        fontFamily="Verdana" 
+                        fontSize="35" 
+                        fill={planet.textColour}
+                        textAnchor='left'
+                        y={30}
+                        >
+                        {id}
+                    </text>
                 </g>
             )
         })
