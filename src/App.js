@@ -12,9 +12,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to the Code Club Galaxy</h1>
         </header>
-        <p className="App-intro">
-          Write your code in <code>./planets</code> and add to <code>./planets/index.js</code> to create a new planet.
-        </p>
         <Canvas />
       </div>
     );
