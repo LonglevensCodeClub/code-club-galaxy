@@ -1,7 +1,8 @@
-export const UPDATE_PLANET = "UPDATE_PLANET"
+export const UPDATE_ELEMENT = "UPDATE_ELEMENT"
 
-export const updatePlanet = (name, planet) => ({
-    type: UPDATE_PLANET,
-    name,
-    planet
+export const updateElement = (id, elementType, element) => ({
+    type: UPDATE_ELEMENT,
+    id,
+    elementType,
+    element
 })

@@ -1,8 +1,11 @@
-const megansPlanet = (updatePlanet) => {
-    updatePlanet({
-        positionX: 500,
-        colour: 'DarkTurquoise'
-    })
+import Planet from '../../elementTypes/planet'
+
+export default (store) => {
+    let planet = new Planet(store)
+
+    planet.setName('Kate')
+    planet.setPositionX(500)
+    planet.setColour('DarkTurquoise')
 
     const rotationCentreX = 600
     const rotationCentreY = 400
@@ -15,13 +18,7 @@ const megansPlanet = (updatePlanet) => {
         const yPosition = orbitDistance * Math.cos(angle);
         let positionX = rotationCentreX + xPosition;
         let positionY = rotationCentreY + yPosition;
-        updatePlanet({
-            positionX,
-            positionY
-        })
+        planet.setPositionX(positionX)
+        planet.setPositionY(positionY)
     }, 50)
-}
-
-module.exports = {
-    'Megan': megansPlanet
 }

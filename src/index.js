@@ -7,6 +7,7 @@ import reducer from './reducers'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { elements } from './elements'
 
 const loggerMiddleware = createLogger()
 
@@ -16,6 +17,8 @@ const store = createStore(
         loggerMiddleware // neat middleware that logs actions
     )
 )
+
+elements.forEach(e => e(store))
 
 ReactDOM.render(
     <Provider store={store}>

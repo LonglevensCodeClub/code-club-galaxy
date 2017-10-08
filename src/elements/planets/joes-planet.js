@@ -1,17 +1,17 @@
-const joesPlanet = (updatePlanet) => {
-    updatePlanet({
-        textColour: 'lightgreen'
-    })
+import Planet from '../../elementTypes/planet'
 
-    updatePlanet({
-        positionX: 100,
-    })
+const joesPlanet = (store) => {
+    let planet = new Planet(store)
+
+    planet.setName('Joe')
+    planet.setTextColour('lightgreen')
+    planet.setPositionX(100)
+
+
     let radiusAdjust = 0
     setInterval(() => {
         let radius = 30 + radiusAdjust
-        updatePlanet({
-            radius
-        })
+        planet.setRadius(radius)
 
         radiusAdjust += 2
         radiusAdjust %= 10
@@ -21,12 +21,10 @@ const joesPlanet = (updatePlanet) => {
     let colourIndex = 0
     setInterval(() => {
         let colour = colours[colourIndex]
-        updatePlanet({colour})
+        planet.setColour(colour)
         colourIndex += 1
         colourIndex %= (colours.length)
     }, 1000)
 }
 
-export default {
-    'Joe': joesPlanet
-}
+export default joesPlanet

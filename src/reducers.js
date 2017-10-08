@@ -1,27 +1,21 @@
-import { UPDATE_PLANET } from './actions'
+import { UPDATE_ELEMENT } from './actions'
+
+import { defaultElements } from './elementTypes'
 
 const defaultState = {}
-
-const defaultPlanet = {
-    radius: 10,
-    positionX: 200,
-    positionY: 200,
-    colour: 'green',
-    textColour: 'white'
-}
 
 const kitReducers = (
     state = defaultState,
     action
  ) => {
     switch (action.type) {
-        case UPDATE_PLANET:
+        case UPDATE_ELEMENT:
             return {
                 ...state,
-                [action.name]: {
-                    ...defaultPlanet,
-                    ...state[action.name],
-                    ...action.planet
+                [action.id]: {
+                    ...defaultElements[action.elementType],
+                    ...state[action.id],
+                    ...action.element
                 }
             }
         default:

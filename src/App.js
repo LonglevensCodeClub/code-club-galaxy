@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import logo from './logo.svg';
 import './App.css';
 
 import Canvas from './Canvas'
 
-import { planets } from './planets'
-
-import { updatePlanet } from './actions'
-
 class App extends Component {
-  componentDidMount() {
-    Object.entries(planets).forEach(([name, planet]) => {
-      planet((updatedPlanet) => this.props.updatePlanet(name, updatedPlanet))
-    })
-  }
-
   render() {
     return (
       <div className="App">
@@ -32,6 +21,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, {
-  updatePlanet
-})(App)
+export default App;
