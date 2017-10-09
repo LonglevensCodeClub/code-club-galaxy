@@ -1,12 +1,11 @@
-import Planet from '../../elementTypes/planet'
+import Planet from '../classes/Planet'
 
-const joesPlanet = (store) => {
-    let planet = new Planet(store)
+const joesPlanet = (elementCollection) => {
+    let planet = elementCollection.add(new Planet())
 
     planet.setName('Joe')
     planet.setTextColour('lightgreen')
     planet.setPositionX(100)
-
 
     let radiusAdjust = 0
     setInterval(() => {

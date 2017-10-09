@@ -1,8 +1,6 @@
 export const UPDATE_ELEMENT = "UPDATE_ELEMENT"
 
-export const updateElement = (id, elementType, element) => ({
+export const updateElement = (elementState) => ({
     type: UPDATE_ELEMENT,
-    id,
-    elementType,
-    element
+    elementState
 })

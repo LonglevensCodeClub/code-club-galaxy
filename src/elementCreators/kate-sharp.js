@@ -1,7 +1,7 @@
-import Planet from '../../elementTypes/planet'
+import Planet from '../classes/Planet'
 
-export default (store) => {
-    let planet = new Planet(store)
+export default (elementCollection) => {
+    let planet = elementCollection.add(new Planet())
 
     planet.setName('Kate')
     planet.setPositionX(500)

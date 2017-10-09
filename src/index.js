@@ -4,10 +4,12 @@ import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware  } from 'redux'
 import reducer from './reducers'
+import { updateElement } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { elements } from './elements'
+import { elementCreators } from './elementCreators'
+import ElementCollection from './classes/ElementCollection'
 
 const loggerMiddleware = createLogger()
 
@@ -18,7 +20,18 @@ const store = createStore(
     )
 )
 
-elements.forEach(e => e(store))
+// Create a collection to hold all the elements
+const elementCollection = new ElementCollection()
+
+// Pass the collection to each element creator
+elementCreators.forEach(e => e(elementCollection))
+
+const FPS = 30
+const interval = 1000 / FPS
+
+setInterval(() => {
+    elementCollection.elements.forEach(e => store.dispatch(updateElement(e.state)))
+}, interval)
 
 ReactDOM.render(
     <Provider store={store}>

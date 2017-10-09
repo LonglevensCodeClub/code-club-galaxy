@@ -1,7 +1,5 @@
 import { UPDATE_ELEMENT } from './actions'
 
-import { defaultElements } from './elementTypes'
-
 const defaultState = {}
 
 const kitReducers = (
@@ -12,10 +10,9 @@ const kitReducers = (
         case UPDATE_ELEMENT:
             return {
                 ...state,
-                [action.id]: {
-                    ...defaultElements[action.elementType],
-                    ...state[action.id],
-                    ...action.element
+                [action.elementState.id]: {
+                    ...state[action.elementState.id],
+                    ...action.elementState
                 }
             }
         default:
