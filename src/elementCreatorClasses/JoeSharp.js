@@ -2,6 +2,7 @@ import ElementCreator from './ElementCreator'
 
 import Planet from '../classes/Planet'
 import Orbit from '../classes/Orbit'
+import Star from '../classes/Star'
 
 class JoeSharp extends ElementCreator {
     createElements() {
@@ -24,11 +25,17 @@ class JoeSharp extends ElementCreator {
         this.colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
         this.colourIndex = 0
 
+        this.star = new Star()
+        this.star.setRate(2)
+        this.star.setPositionX(600)
+        this.star.setPositionY(200)
+
         // Return all the elements we wish to be displayed
         return [
             this.sun,
             this.sunOrbit,
-            this.planet
+            this.planet,
+            this.star
         ]
     }
 
