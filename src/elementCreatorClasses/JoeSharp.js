@@ -5,12 +5,17 @@ import Orbit from '../classes/Orbit'
 
 class JoeSharp extends ElementCreator {
     createElements() {
+        // Create a sun
+        this.sun = new Planet()
+        this.sun.setTextColour('lightgreen')
+        this.sun.setName('Joe')
+
+        this.sunOrbit = new Orbit(this.sun)
+
+        // Create a planet, put it into the sun orbit
         this.planet = new Planet()
-        this.planet.setName('Joe')
-        this.planet.setTextColour('lightgreen')
-        
-        this.orbit = new Orbit()
-        this.orbit.addPlanet(this.planet, {
+        this.planet.setColour('darkgreen')
+        this.sunOrbit.addSatellite(this.planet, {
             orbitFrequency: 0.2
         })
         
@@ -21,19 +26,20 @@ class JoeSharp extends ElementCreator {
 
         // Return all the elements we wish to be displayed
         return [
-            this.orbit,
+            this.sun,
+            this.sunOrbit,
             this.planet
         ]
     }
 
     animateFrame(timeNow) {
         let radius = 30 + this.radiusAdjust
-        this.planet.setRadius(radius)
+        this.sun.setRadius(radius)
         this.radiusAdjust += 2
         this.radiusAdjust %= 10
 
         let colour = this.colours[this.colourIndex]
-        this.planet.setColour(colour)
+        this.sun.setColour(colour)
         this.colourIndex += 1
         this.colourIndex %= (this.colours.length)
     }

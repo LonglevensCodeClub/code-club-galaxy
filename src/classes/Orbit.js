@@ -1,10 +1,11 @@
 import Element from './Element'
 
 class Orbit extends Element {
-    constructor() {
+    constructor(centreElement) {
         super('orbit')
 
-        this.planets = []
+        this.centreElement = centreElement
+        this.satellites = []
 
         this.setProps({
             radiusX: 100,
@@ -13,19 +14,25 @@ class Orbit extends Element {
     }
     
     /**
-     * Updates the position of all the planets so they travel around the orbit
+     * Updates the position of all the satellites so they travel around the orbit
      * 
      * @param {number} time The current time
      */
     updateFrame(time) {
-        this.planets.forEach(planet => {
-            const angle = 2 * Math.PI * planet.orbitFrequency * new Date().getTime() / 1000;
-            const xPosition = this.state.radiusX * Math.sin(angle + planet.phase);
-            const yPosition = this.state.radiusY * Math.cos(angle + planet.phase);
-            let planetX = this.state.positionX + xPosition
-            let planetY = this.state.positionY + yPosition
-            planet.setPositionX(planetX)
-            planet.setPositionY(planetY)
+        this.satellites.forEach(satellite => {
+            // Track our centre element
+            if (this.centreElement) {
+                this.setPositionX(this.centreElement.state.positionX)
+                this.setPositionY(this.centreElement.state.positionY)
+            }
+
+            const angle = 2 * Math.PI * satellite.orbitFrequency * new Date().getTime() / 1000;
+            const xPosition = this.state.radiusX * Math.sin(angle + satellite.phase);
+            const yPosition = this.state.radiusY * Math.cos(angle + satellite.phase);
+            let satelliteX = this.state.positionX + xPosition
+            let satelliteY = this.state.positionY + yPosition
+            satellite.setPositionX(satelliteX)
+            satellite.setPositionY(satelliteY)
         })
     }
 
@@ -48,12 +55,22 @@ class Orbit extends Element {
     }
 
     /**
-     * Put a planet into the orbit
+     * Set a circular radius
      * 
-     * @param {Planet} planet The planet to add
-     * @param {object} userConfig The phase and orbitalFrequency of the planet
+     * @param {number} value The radius 
      */
-    addPlanet(planet, userConfig) {
+    setRadius(value) {
+        this.setRadiusX(value)
+        this.setRadiusY(value)
+    }
+
+    /**
+     * Put a satellite into the orbit
+     * 
+     * @param {Element} satellite The element to put into orbit to add
+     * @param {object} userConfig The phase and orbitalFrequency of the satellite
+     */
+    addSatellite(satellite, userConfig) {
         const defaultConfig = {
             orbitFrequency: 1.0, 
             phase: 0.0
@@ -64,9 +81,9 @@ class Orbit extends Element {
             ...userConfig
         }
 
-        planet.orbitFrequency = config.orbitFrequency
-        planet.phase = config.phase
-        this.planets.push(planet)
+        satellite.orbitFrequency = config.orbitFrequency
+        satellite.phase = config.phase
+        this.satellites.push(satellite)
     }
 }
 
