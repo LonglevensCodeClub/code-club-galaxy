@@ -1,36 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { createLogger } from 'redux-logger'
+//import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware  } from 'redux'
 import reducer from './reducers'
 import { updateElement } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { elementCreators } from './elementCreators'
-import ElementCollection from './classes/ElementCollection'
+import { elementCreatorClasses } from './elementCreatorClasses'
 
-const loggerMiddleware = createLogger()
+//const loggerMiddleware = createLogger()
 
 const store = createStore(
     reducer,
     applyMiddleware(
-        loggerMiddleware // neat middleware that logs actions
+        //loggerMiddleware // neat middleware that logs actions
     )
 )
 
 // Create a collection to hold all the elements
-const elementCollection = new ElementCollection()
+const elementCollection = []
 
 // Pass the collection to each element creator
-elementCreators.forEach(e => e(elementCollection))
+const elementCreators = elementCreatorClasses.map(c => new c())
+elementCreators
+    .map(c => c.createElements())
+    .forEach(ec => {
+        ec.forEach(e => elementCollection.push(e))
+    })
 
-const FPS = 30
+const FPS = 20
 const interval = 1000 / FPS
 
 setInterval(() => {
-    elementCollection.elements.forEach(e => store.dispatch(updateElement(e.state)))
+    let timeNow = new Date().getTime();
+    elementCreators.forEach(c => c.animateFrame(timeNow))
+
+    elementCollection.forEach(e => {
+        e.updateFrame(timeNow)
+        store.dispatch(updateElement(e.state))
+    })
 }, interval)
 
 ReactDOM.render(
