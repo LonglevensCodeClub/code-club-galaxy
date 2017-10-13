@@ -1,7 +1,7 @@
 import JoeSharp from './JoeSharp'
 import KateSharp from './KateSharp'
 
-export const elementCreatorClasses = [
+export const elementCreators = [
     JoeSharp,
     KateSharp
 ]

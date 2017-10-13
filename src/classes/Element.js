@@ -61,6 +61,17 @@ class Element {
     setName(name) {
         this.setProp('name', name)
     }
+
+    /**
+     * Sets the position in a single function call
+     * 
+     * @param {number} x The x coordinate
+     * @param {number} y The y coordinate
+     */
+    setPosition(x, y) {
+        this.setPositionX(x)
+        this.setPositionY(y)
+    }
     
     /**
      * Set the position of the element in the x-plane

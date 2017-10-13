@@ -5,7 +5,7 @@ export default (id, element) => (
         <polygon points="0,-10 15,30 -20,5 20,5 -15,30"
             fill={element.colour}
             stroke={element.colour}
-            fill-rule="nonzero"
+            fillRule="nonzero"
             />
     </g>
 )

@@ -8,7 +8,7 @@ import { updateElement } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { elementCreatorClasses } from './elementCreatorClasses'
+import { elementCreators } from './elementCreators'
 
 //const loggerMiddleware = createLogger()
 
@@ -23,9 +23,8 @@ const store = createStore(
 const elementCollection = []
 
 // Pass the collection to each element creator
-const elementCreators = elementCreatorClasses.map(c => new c())
 elementCreators
-    .map(c => c.createElements())
+    .map(c => c())
     .forEach(ec => {
         ec.forEach(e => elementCollection.push(e))
     })
@@ -35,7 +34,6 @@ const interval = 1000 / FPS
 
 setInterval(() => {
     let timeNow = new Date().getTime();
-    elementCreators.forEach(c => c.animateFrame(timeNow))
 
     elementCollection.forEach(e => {
         e.updateFrame(timeNow)
