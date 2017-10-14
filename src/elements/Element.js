@@ -1,7 +1,14 @@
 let nextId = 0
 
+const defaultProps = {
+    positionX: 200,
+    positionY: 200,
+    colour: 'white',
+    textColour: 'white'
+}
+
 class Element {
-    constructor(elementType) {
+    constructor(elementType, childDefaultProps, userProps) {
         this.elementType = elementType
         this.id = `${this.elementType}-${nextId}`
         nextId += 1
@@ -15,11 +22,16 @@ class Element {
         this.setProp('elementType', elementType)
 
         this.setProps({
-            positionX: 200,
-            positionY: 200,
-            colour: 'white',
-            textColour: 'white'
+            ...defaultProps,
+            ...childDefaultProps,
+            ...userProps
         })
+
+        this.children = []
+    }
+
+    addChild(child) {
+        this.children.push(child)
     }
 
     /**

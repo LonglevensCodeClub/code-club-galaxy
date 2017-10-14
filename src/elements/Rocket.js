@@ -1,16 +1,14 @@
 import Element from './Element'
 
+const defaultProps = {
+    size: 5,
+    speed: 4,
+    travelAngle: 0
+}
+
 class Rocket extends Element {
-    constructor(centreElement, waypoints = []) {
-        super('rocket')
-
-        this.setProps({
-            size: 5,
-            speed: 4,
-            travelAngle: 0
-        })
-
-        this.flyBetween(waypoints)
+    constructor(userProps) {
+        super('rocket', defaultProps, userProps)
     }
     
     flyBetween(waypoints) {

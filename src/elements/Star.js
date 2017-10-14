@@ -1,14 +1,14 @@
 import Element from './Element'
 
-class Star extends Element {
-    constructor(centreElement) {
-        super('star')
+const defaultProps = {
+    baseSize: 5,
+    size: 5,
+    rate: 1
+}
 
-        this.setProps({
-            baseSize: 5,
-            size: 5,
-            rate: 1
-        })
+class Star extends Element {
+    constructor(userProps) {
+        super('star', defaultProps, userProps)
     }
     
     /**

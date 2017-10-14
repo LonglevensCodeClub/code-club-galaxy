@@ -2,7 +2,7 @@ import { UPDATE_ELEMENT } from './actions'
 
 const defaultState = {}
 
-const kitReducers = (
+const reducers = (
     state = defaultState,
     action
  ) => {
@@ -20,4 +20,4 @@ const kitReducers = (
      }
  }
 
- export default kitReducers
+ export default reducers

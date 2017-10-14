@@ -26,7 +26,10 @@ const elementCollection = []
 elementCreators
     .map(c => c())
     .forEach(ec => {
-        ec.forEach(e => elementCollection.push(e))
+        ec.forEach(e => {
+            e.children.forEach(child => elementCollection.push(child))
+            elementCollection.push(e)
+        })
     })
 
 const FPS = 20

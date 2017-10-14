@@ -1,49 +1,40 @@
-import Planet from '../classes/Planet'
-import Orbit from '../classes/Orbit'
-import Star from '../classes/Star'
-import Rocket from '../classes/Rocket'
+import Galaxy from '../elements'
 
 export default () => {
     // Create a sun
-    const sun = new Planet()
-    sun.setTextColour('lightgreen')
-    sun.setName('Joe')
-
-    const sunOrbit1 = new Orbit(sun)
-
-    // Create a planet, put it into the sun orbit
-    const planet1 = new Planet()
-    planet1.setColour('red')
-    sunOrbit1.addSatellite(planet1, {
-        orbitFrequency: 0.05
+    const sun = new Galaxy.Planet({
+        textColour: 'lightgreen',
+        name: 'Joe'
     })
-    
-    const sunOrbit2 = new Orbit(sun)
-    sunOrbit2.setRadius(140)
 
     // Create a planet, put it into the sun orbit
-    const  planet2 = new Planet()
-    planet2.setColour('orange')
-    sunOrbit2.addSatellite(planet2, {
+    const planet1 = new Galaxy.Planet({
+        colour: 'red'
+    })
+    planet1.orbit(sun, {
         orbitFrequency: 0.05
     })
 
-    const planet3 = new Planet()
-    planet3.setColour('maroon')
-    sunOrbit2.addSatellite(planet3, {
+    // Create a planet, put it into the sun orbit
+    const planet2 = new Galaxy.Planet({
+        colour: 'orange'
+    })
+    planet2.orbit(sun, {
         orbitFrequency: 0.05,
         phase: Math.PI / 4
     })
 
     // Create a Rocket to go between each planet, stopping at the sun each time
-    const rocket1 = new Rocket()
-    rocket1.flyBetween([planet1, sun, planet2, sun, planet3, sun])
-    rocket1.setColour('blue')
+    const rocket1 = new Galaxy.Rocket({
+        colour: 'blue'
+    })
+    rocket1.flyBetween([planet1, sun, planet2, sun])
     
-    const star = new Star()
-    star.setRate(2)
-    star.setPositionX(600)
-    star.setPositionY(200)
+    const star = new Galaxy.Star({
+        rate: 2,
+        positionX: 600,
+        positionY: 200
+    })
 
     // These attributes will be used in the animation
     let radiusAdjust = 0
@@ -65,11 +56,8 @@ export default () => {
     // Return all the elements we wish to be displayed
     return [
         sun,
-        sunOrbit1,
         planet1,
-        sunOrbit2,
         planet2,
-        planet3,
         star,
         rocket1,
     ]
