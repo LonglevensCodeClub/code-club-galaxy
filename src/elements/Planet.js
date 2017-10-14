@@ -6,8 +6,8 @@ const defaultProps = {
 }
 
 class Planet extends Element {
-    constructor(userProps) {
-        super('planet', defaultProps, userProps)
+    constructor(galaxyId, userProps) {
+        super('planet', galaxyId, defaultProps, userProps)
     }
 
     /**
@@ -20,7 +20,7 @@ class Planet extends Element {
     }
 
     orbit(centre, config) {
-        const orbit = new Orbit(centre, this, config)
+        const orbit = new Orbit(this.galaxyId, centre, this, config)
         this.addChild(orbit)
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default (id, element) => (
-    <g key={id} transform={`translate(${element.positionX}, ${element.positionY}) scale(${0.01 * element.size})`}>
+export default (element) => (
+    <g key={element.id} transform={`translate(${element.positionX}, ${element.positionY}) scale(${0.01 * element.size})`}>
         <g>
 		<g>
 			<path fill={element.colour} d="M204.192,62.194c14.147-20.472,29.339-41.613,50.963-54.72c21.323,12.782,36.366,33.547,50.311,53.656

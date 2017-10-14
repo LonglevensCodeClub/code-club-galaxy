@@ -1,9 +1,31 @@
+import { combineReducers } from 'redux'
+
 import { UPDATE_ELEMENT } from './actions'
+import { ADD_GALAXY } from './actions'
 
-const defaultState = {}
+const defaultStateGalaxies = {}
 
-const reducers = (
-    state = defaultState,
+const galaxies = (
+    state = defaultStateGalaxies,
+    action
+ ) => {
+    switch (action.type) {
+        case ADD_GALAXY:
+            return {
+                ...state,
+                [action.galaxyId]: {
+                    id: action.galaxyId
+                }
+            }
+        default:
+            return state;
+     }
+ }
+
+const defaultStateElements = {}
+
+const elements = (
+    state = defaultStateElements,
     action
  ) => {
     switch (action.type) {
@@ -20,4 +42,7 @@ const reducers = (
      }
  }
 
- export default reducers
+ export default combineReducers({
+    elements,
+    galaxies
+ })

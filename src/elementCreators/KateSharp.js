@@ -1,29 +1,26 @@
-import Galaxy from '../elements'
 
-export default () => {
+export default (galaxy) => {
     // Create a sun
-    const sun = new Galaxy.Planet({
+    const sun = galaxy.newPlanet({
         name: 'Kate',
         textColour: 'red',
         colour: 'goldenrod',
-        positionX: 400,
-        positionY: 300,
         radius: 20
     })
 
     // Create a planet
-    const planet = new Galaxy.Planet({
+    const planet = galaxy.newPlanet({
         colour: 'DarkTurquoise'
     })
 
     // Put the planet into the suns orbit
     planet.orbit(sun, {
-        radius: 100,
+        radius: 70,
         orbitFrequency: 0.1
     })
 
     // Create a moon
-    const moon = new Galaxy.Planet({
+    const moon = galaxy.newPlanet({
         radius: 5,
         colour: 'grey'
     })

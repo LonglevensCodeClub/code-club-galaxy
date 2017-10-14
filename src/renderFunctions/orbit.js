@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default (id, element) => (
-    <g key={id} transform={`translate(${element.positionX}, ${element.positionY})`}>
+export default (element) => (
+    <g key={element.id} transform={`translate(${element.positionX}, ${element.positionY})`}>
         <ellipse 
             rx={element.radiusX} 
             ry={element.radiusY} 

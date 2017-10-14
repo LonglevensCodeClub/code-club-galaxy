@@ -7,8 +7,8 @@ const defaultProps = {
 }
 
 class Star extends Element {
-    constructor(userProps) {
-        super('star', defaultProps, userProps)
+    constructor(galaxyId, userProps) {
+        super('star', galaxyId, defaultProps, userProps)
     }
     
     /**

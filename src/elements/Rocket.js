@@ -7,8 +7,8 @@ const defaultProps = {
 }
 
 class Rocket extends Element {
-    constructor(userProps) {
-        super('rocket', defaultProps, userProps)
+    constructor(galaxyId, userProps) {
+        super('rocket', galaxyId, defaultProps, userProps)
     }
     
     flyBetween(waypoints) {

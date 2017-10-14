@@ -4,11 +4,12 @@ import { Provider } from 'react-redux'
 //import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware  } from 'redux'
 import reducer from './reducers'
-import { updateElement } from './actions'
+import { updateElement, addGalaxy } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { elementCreators } from './elementCreators'
+import Galaxy from './elements/Galaxy'
 
 //const loggerMiddleware = createLogger()
 
@@ -24,11 +25,16 @@ const elementCollection = []
 
 // Pass the collection to each element creator
 elementCreators
-    .map(c => c())
-    .forEach(ec => {
-        ec.forEach(e => {
-            e.children.forEach(child => elementCollection.push(child))
-            elementCollection.push(e)
+    .map(c => {
+        const galaxy = new Galaxy()
+        store.dispatch(addGalaxy(galaxy.id))
+        c(galaxy)
+        return galaxy
+    })
+    .forEach(galaxy => {
+        galaxy.elements.forEach(element => {
+            element.children.forEach(child => elementCollection.push(child))
+            elementCollection.push(element)
         })
     })
 

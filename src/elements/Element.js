@@ -1,21 +1,23 @@
 let nextId = 0
 
 const defaultProps = {
-    positionX: 200,
-    positionY: 200,
+    positionX: 100,
+    positionY: 100,
     colour: 'white',
     textColour: 'white'
 }
 
 class Element {
-    constructor(elementType, childDefaultProps, userProps) {
+    constructor(elementType, galaxyId, childDefaultProps, userProps) {
         this.elementType = elementType
-        this.id = `${this.elementType}-${nextId}`
+        this.galaxyId = galaxyId
+        this.id = nextId
         nextId += 1
         
         this.state = {
             elementType: this.elementType,
-            id: this.id
+            id: this.id,
+            galaxyId
         }
 
         // This must be set for our element

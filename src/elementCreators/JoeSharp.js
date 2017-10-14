@@ -1,14 +1,13 @@
-import Galaxy from '../elements'
 
-export default () => {
+export default (galaxy) => {
     // Create a sun
-    const sun = new Galaxy.Planet({
+    const sun = galaxy.newPlanet({
         textColour: 'lightgreen',
         name: 'Joe'
     })
 
     // Create a planet, put it into the sun orbit
-    const planet1 = new Galaxy.Planet({
+    const planet1 = galaxy.newPlanet({
         colour: 'red'
     })
     planet1.orbit(sun, {
@@ -16,7 +15,7 @@ export default () => {
     })
 
     // Create a planet, put it into the sun orbit
-    const planet2 = new Galaxy.Planet({
+    const planet2 = galaxy.newPlanet({
         colour: 'orange'
     })
     planet2.orbit(sun, {
@@ -25,12 +24,12 @@ export default () => {
     })
 
     // Create a Rocket to go between each planet, stopping at the sun each time
-    const rocket1 = new Galaxy.Rocket({
+    const rocket1 = galaxy.newRocket({
         colour: 'blue'
     })
     rocket1.flyBetween([planet1, sun, planet2, sun])
     
-    const star = new Galaxy.Star({
+    const star = galaxy.newStar({
         rate: 2,
         positionX: 600,
         positionY: 200
