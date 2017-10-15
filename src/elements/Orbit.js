@@ -1,15 +1,14 @@
 import Element from './Element'
 
-const defaultProps = {
-    radiusX: 80,
-    radiusY: 60,
-    orbitFrequency: 1.0, 
-    phase: 0.0
-}
-
 class Orbit extends Element {
     constructor(galaxyId, centreElement, satellite, userProps) {
-        super('orbit', galaxyId, defaultProps, userProps)
+        super('orbit', galaxyId, {
+            radiusX: 80,
+            radiusY: 60,
+            orbitFrequency: 1.0, 
+            phase: Math.random() * 2 * Math.PI,
+            colour: 'rgba(255, 255, 255, 0.2)'
+        }, userProps)
 
         this.centreElement = centreElement
         this.satellite = satellite

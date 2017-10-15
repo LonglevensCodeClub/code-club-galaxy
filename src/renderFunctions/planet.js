@@ -7,14 +7,5 @@ export default (element) => (
             cx={0} 
             cy={0}
             fill={element.colour}/> 
-        <text
-            fontFamily="Verdana" 
-            fontSize="35" 
-            fill={element.textColour}
-            textAnchor='left'
-            y={30}
-            >
-            {element.name}
-        </text>
     </g>
 )

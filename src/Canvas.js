@@ -13,10 +13,21 @@ const Canvas = (props) => {
     }
 
     const renderGalaxies = () => {
+        const galaxyWidth = 210
         return Object.values(props.galaxies)
             .map(g => (
-                <g key={g.id} transform={`translate(${g.id * 210}, 0)`}>
+                <g key={g.id} transform={`translate(${g.id * galaxyWidth}, 0)`}>
                     {renderElements(g.id)}
+                    <text
+                        fontFamily="Verdana" 
+                        fontSize="30" 
+                        fill={g.textColour}
+                        textAnchor='middle'
+                        x={galaxyWidth / 2}
+                        y={30}
+                        >
+                        {g.name}
+                    </text>
                 </g>
             ))
     }

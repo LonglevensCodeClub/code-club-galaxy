@@ -1,42 +1,26 @@
 
 export default (galaxy) => {
-    // Create a sun
-    const sun = galaxy.newPlanet({
-        name: 'Kate',
-        textColour: 'red',
-        colour: 'goldenrod',
-        radius: 20
-    })
+    galaxy.setName('Kate')
 
-    // Create a planet
-    const planet = galaxy.newPlanet({
-        colour: 'DarkTurquoise'
-    })
+    const colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 
-    // Put the planet into the suns orbit
-    planet.orbit(sun, {
-        radius: 70,
-        orbitFrequency: 0.1
-    })
+    let lastPlanet = undefined;
+    let count = 0
 
-    // Create a moon
-    const moon = galaxy.newPlanet({
-        radius: 5,
-        colour: 'grey'
+    colours.forEach(colour => {
+        const planet = galaxy.newPlanet({
+            colour,
+            radius: 50 / (2 * (count+1))
+        });
+        if (lastPlanet) {
+            planet.orbit(lastPlanet, {
+                orbitFrequency: count * 0.07,
+                radius: 50 / count,
+                colour: 'none',
+                phase: 0
+            })
+        }
+        count++
+        lastPlanet = planet
     })
-
-    // Put the moon into the moonOrbit
-    moon.orbit(planet, {
-        orbitFrequency: 0.3,
-        radiusX: 20,
-        radiusY: 20,
-        colour: 'none'
-    })
-
-    // Return all the elements we wish to be displayed
-    return [
-        sun,
-        planet,
-        moon
-    ]
 }

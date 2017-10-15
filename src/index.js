@@ -16,7 +16,7 @@ import Galaxy from './elements/Galaxy'
 const store = createStore(
     reducer,
     applyMiddleware(
-        //loggerMiddleware // neat middleware that logs actions
+//        loggerMiddleware // neat middleware that logs actions
     )
 )
 
@@ -27,8 +27,8 @@ const elementCollection = []
 elementCreators
     .map(c => {
         const galaxy = new Galaxy()
-        store.dispatch(addGalaxy(galaxy.id))
         c(galaxy)
+        store.dispatch(addGalaxy(galaxy.state))
         return galaxy
     })
     .forEach(galaxy => {

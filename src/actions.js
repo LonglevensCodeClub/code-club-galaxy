@@ -7,7 +7,7 @@ export const updateElement = (elementState) => ({
 
 export const ADD_GALAXY = "ADD_GALAXY"
 
-export const addGalaxy = (galaxyId) => ({
+export const addGalaxy = (galaxyState) => ({
     type: ADD_GALAXY,
-    galaxyId
+    galaxyState
 })

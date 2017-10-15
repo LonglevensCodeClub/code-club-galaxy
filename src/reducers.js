@@ -13,8 +13,9 @@ const galaxies = (
         case ADD_GALAXY:
             return {
                 ...state,
-                [action.galaxyId]: {
-                    id: action.galaxyId
+                [action.galaxyState.id]: {
+                    ...state[action.galaxyState.id],
+                    ...action.galaxyState
                 }
             }
         default:

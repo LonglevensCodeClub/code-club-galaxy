@@ -1,17 +1,18 @@
 
 export default (galaxy) => {
+    galaxy.setName('Joe')
+
     // Create a sun
-    const sun = galaxy.newPlanet({
-        textColour: 'lightgreen',
-        name: 'Joe'
-    })
+    const sun = galaxy.newSun({})
 
     // Create a planet, put it into the sun orbit
     const planet1 = galaxy.newPlanet({
-        colour: 'red'
+        colour: 'red',
+        radius: 5
     })
     planet1.orbit(sun, {
-        orbitFrequency: 0.05
+        orbitFrequency: 0.05,
+        phase: 0
     })
 
     // Create a planet, put it into the sun orbit
@@ -20,20 +21,14 @@ export default (galaxy) => {
     })
     planet2.orbit(sun, {
         orbitFrequency: 0.05,
-        phase: Math.PI / 4
+        phase: Math.PI
     })
 
     // Create a Rocket to go between each planet, stopping at the sun each time
     const rocket1 = galaxy.newRocket({
         colour: 'blue'
     })
-    rocket1.flyBetween([planet1, sun, planet2, sun])
-    
-    const star = galaxy.newStar({
-        rate: 2,
-        positionX: 600,
-        positionY: 200
-    })
+    rocket1.flyBetween([planet1, planet2])
 
     // These attributes will be used in the animation
     let radiusAdjust = 0
@@ -41,24 +36,15 @@ export default (galaxy) => {
     let colourIndex = 0
 
     setInterval(() => {
-        let radius = 30 + radiusAdjust
+        let radius = 10 + radiusAdjust
         sun.setRadius(radius)
-        radiusAdjust += 2
-        radiusAdjust %= 10
+        radiusAdjust += 1
+        radiusAdjust %= 5
 
         let colour = colours[colourIndex]
         sun.setColour(colour)
         colourIndex += 1
         colourIndex %= (colours.length)
     }, 100)
-
-    // Return all the elements we wish to be displayed
-    return [
-        sun,
-        planet1,
-        planet2,
-        star,
-        rocket1,
-    ]
 }
 

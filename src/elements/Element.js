@@ -2,9 +2,8 @@ let nextId = 0
 
 const defaultProps = {
     positionX: 100,
-    positionY: 100,
-    colour: 'white',
-    textColour: 'white'
+    positionY: 120,
+    colour: 'white'
 }
 
 class Element {
@@ -68,15 +67,6 @@ class Element {
     }
 
     /**
-     * Set the name of the element for display
-     * 
-     * @param {string} name The new name of the element
-     */
-    setName(name) {
-        this.setProp('name', name)
-    }
-
-    /**
      * Sets the position in a single function call
      * 
      * @param {number} x The x coordinate
@@ -115,15 +105,6 @@ class Element {
      */
     setColour(value) {
         this.setProp('colour', value)
-    }
-
-    /**
-     * The default colour for any text on the element
-     * 
-     * @param {string} value The CSS colour to use on any text 
-     */
-    setTextColour(value) {
-        this.setProp('textColour', value)
     }
 }
 
