@@ -5,7 +5,7 @@ class Orbit extends Element {
         super('orbit', galaxyId, {
             radiusX: 80,
             radiusY: 60,
-            orbitFrequency: 1.0, 
+            orbitFrequency: 0.1, 
             phase: Math.random() * 2 * Math.PI,
             colour: 'rgba(255, 255, 255, 0.2)'
         }, userProps)
@@ -13,7 +13,7 @@ class Orbit extends Element {
         this.centreElement = centreElement
         this.satellite = satellite
         
-        if (userProps.radius) {
+        if (!!userProps && userProps.radius) {
             this.setRadius(userProps.radius)
         }
     }

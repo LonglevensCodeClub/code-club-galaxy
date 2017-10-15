@@ -1,8 +1,8 @@
 import Element from './Element'
 
 const defaultProps = {
-    baseSize: 5,
-    size: 5,
+    baseSize: 1,
+    size: 3,
     rate: 1
 }
 
@@ -35,7 +35,7 @@ class Star extends Element {
      * @param {number} time The current time
      */
     updateFrame(time) {
-        let size = this.state.baseSize + Math.abs(((time / (1000 / this.state.rate)) % 10) - 5)
+        let size = this.state.baseSize + Math.abs(((time / (1000 / this.state.rate)) % 5) - 2)
         
         this.setProp('size', size)
     }

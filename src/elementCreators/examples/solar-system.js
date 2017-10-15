@@ -12,7 +12,8 @@ export default (galaxy) => {
         radius: 3
     }).orbit(sun, {
         orbitFrequency: 0.1,
-        radius: 18
+        radius: 18,
+        colour: 'none'
     })
     
     // Venus
@@ -21,7 +22,8 @@ export default (galaxy) => {
         radius: 5
     }).orbit(sun, {
         orbitFrequency: 0.2,
-        radius: 24
+        radius: 24,
+        colour: 'none'
     })
     
     // Earth
@@ -30,7 +32,8 @@ export default (galaxy) => {
         radius: 4
     }).orbit(sun, {
         orbitFrequency: 0.1,
-        radius: 30
+        radius: 30,
+        colour: 'none'
     })
     
     // Mars
@@ -39,7 +42,8 @@ export default (galaxy) => {
         radius: 3
     }).orbit(sun, {
         orbitFrequency: 0.05,
-        radius: 34
+        radius: 34,
+        colour: 'none'
     })
     
     // Jupiter
@@ -48,7 +52,8 @@ export default (galaxy) => {
         radius: 10
     }).orbit(sun, {
         orbitFrequency: 0.05,
-        radius: 45
+        radius: 45,
+        colour: 'none'
     })
     
     // Saturn
@@ -57,7 +62,8 @@ export default (galaxy) => {
         radius: 8
     }).orbit(sun, {
         orbitFrequency: 0.05,
-        radius: 55
+        radius: 55,
+        colour: 'none'
     })
     
     // Neptune
@@ -66,7 +72,8 @@ export default (galaxy) => {
         radius: 7
     }).orbit(sun, {
         orbitFrequency: 0.05,
-        radius: 63
+        radius: 63,
+        colour: 'none'
     })
     
     // Uranus
@@ -75,6 +82,7 @@ export default (galaxy) => {
         radius: 5
     }).orbit(sun, {
         orbitFrequency: 0.05,
-        radius: 70
+        radius: 70,
+        colour: 'none'
     })
 }

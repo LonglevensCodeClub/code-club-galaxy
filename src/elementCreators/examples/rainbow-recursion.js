@@ -1,6 +1,6 @@
 
 export default (galaxy) => {
-    galaxy.setName('Kate')
+    galaxy.setName('Rainbow Recursion')
 
     const colours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 
@@ -10,12 +10,12 @@ export default (galaxy) => {
     colours.forEach(colour => {
         const planet = galaxy.newPlanet({
             colour,
-            radius: 50 / (2 * (count+1))
+            radius: 20 / (2 * (count+1))
         });
         if (lastPlanet) {
             planet.orbit(lastPlanet, {
                 orbitFrequency: count * 0.07,
-                radius: 50 / count,
+                radius: 30 / count,
                 colour: 'none',
                 phase: 0
             })

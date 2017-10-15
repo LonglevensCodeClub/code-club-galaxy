@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import renderFunctions from './renderFunctions'
+import { getWidth, getHeight } from './utils'
+
+import './canvas.css';
 
 const NO_FOCUS = -1
 
@@ -50,39 +53,43 @@ class Canvas extends Component {
     }
 
     renderGalaxies() {
-        const galaxyWidth = 210
-
-        let scale = 1
+        const smallerDim = Math.min(getWidth(), (getHeight() - 150)) // fiddle factor for app header
+        
+        let dimension = '250px'
+        let transform = ''
         if (this.state.focusGalaxy > NO_FOCUS) {
-            scale = 3
+            dimension = `${smallerDim}px`
+            let scale = smallerDim / 250
+            transform = `scale(${scale})`
         }
 
         return Object.values(this.props.galaxies)
             .filter(galaxy => (this.state.focusGalaxy === NO_FOCUS)
                                 || (this.state.focusGalaxy === galaxy.id))
             .map(galaxy => (
-                <g key={galaxy.id} transform={`translate(${galaxy.id * galaxyWidth}, 0) scale(${scale})`}>
-                    {this.renderElements(galaxy.id)}
-                    <text
-                        fontFamily="Verdana" 
-                        fontSize="30" 
-                        fill={galaxy.textColour}
-                        textAnchor='middle'
-                        x={galaxyWidth / 2}
-                        y={30}
-                        >
-                        {galaxy.name}
-                    </text>
-                </g>
+                <svg key={galaxy.id} width={dimension} height={dimension}>
+                    <g transform={transform}>
+                        {this.renderElements(galaxy.id)}
+                        <text
+                            fontFamily="Helvetica" 
+                            fontSize="24" 
+                            fill={galaxy.textColour}
+                            textAnchor='left'
+                            x={20}
+                            y={30}
+                            >
+                            {galaxy.name}
+                        </text>
+                    </g>
+                </svg>
             ))
     }
 
     render (props) {
         return (
-            <svg width='100%' height='100%'>
-                <rect x='0' y='0' width='100%' height='100%' fill='black' />
+            <div className='canvas'>
                 {this.renderGalaxies()}
-            </svg>
+            </div>
         )
     }
 }

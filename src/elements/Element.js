@@ -1,8 +1,8 @@
 let nextId = 0
 
 const defaultProps = {
-    positionX: 100,
-    positionY: 120,
+    positionX: 130,
+    positionY: 130,
     colour: 'white'
 }
 

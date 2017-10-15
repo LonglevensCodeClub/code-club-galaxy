@@ -22,6 +22,7 @@ class Planet extends Element {
     orbit(centre, config) {
         const orbit = new Orbit(this.galaxyId, centre, this, config)
         this.addChild(orbit)
+        return this
     }
 }
 
