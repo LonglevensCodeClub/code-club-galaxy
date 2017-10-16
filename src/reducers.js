@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { UPDATE_ELEMENT } from './actions'
-import { ADD_GALAXY } from './actions'
+import { UPDATE_ELEMENTS, ADD_GALAXY, RECORD_FPS } from './actions'
 
 const defaultStateGalaxies = {}
 
@@ -30,20 +29,34 @@ const elements = (
     action
  ) => {
     switch (action.type) {
-        case UPDATE_ELEMENT:
+        case UPDATE_ELEMENTS:
+            return action.elements
+        default:
+            return state
+     }
+ }
+
+ const defaultStateUi = {
+    fps: 0
+}
+
+ const ui = (
+     state = defaultStateUi,
+     action
+ ) => {
+     switch (action.type) {
+         case RECORD_FPS:
             return {
                 ...state,
-                [action.elementState.id]: {
-                    ...state[action.elementState.id],
-                    ...action.elementState
-                }
+                fps: action.fps
             }
         default:
-            return state;
+            return state
      }
  }
 
  export default combineReducers({
     elements,
-    galaxies
+    galaxies,
+    ui
  })

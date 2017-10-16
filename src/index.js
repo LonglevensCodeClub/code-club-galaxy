@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 //import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware  } from 'redux'
 import reducer from './reducers'
-import { updateElement, addGalaxy } from './actions'
+import { updateElements, addGalaxy, recordFps } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -38,17 +38,30 @@ elementCreators
         })
     })
 
-const FPS = 10
+const FPS = 30
 const interval = 1000 / FPS
+
+let frames = 0
 
 setInterval(() => {
     let timeNow = new Date().getTime();
 
+    let elements = {}
+
     elementCollection.forEach(e => {
         e.updateFrame(timeNow)
-        store.dispatch(updateElement(e.state))
+        elements[e.id] = e.state
     })
+
+    store.dispatch(updateElements(elements))
+
+    frames += 1
 }, interval)
+
+setInterval(() => {
+    store.dispatch(recordFps(frames))
+    frames = 0
+}, 1000)
 
 ReactDOM.render(
     <Provider store={store}>

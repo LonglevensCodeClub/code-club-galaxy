@@ -88,6 +88,7 @@ class Canvas extends Component {
     render (props) {
         return (
             <div className='canvas'>
+                <p className='fps'>{this.props.ui.fps} FPS</p>
                 {this.renderGalaxies()}
             </div>
         )
@@ -95,5 +96,6 @@ class Canvas extends Component {
 }
 export default connect((state) => ({
     elements: state.elements,
-    galaxies: state.galaxies
+    galaxies: state.galaxies,
+    ui: state.ui
 }), null)(Canvas)
