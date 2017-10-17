@@ -5,8 +5,10 @@ import sunWithStars from './examples/sun-with-stars'
 import rocketBetweenPlanets from './examples/rocket-between-planets'
 import rainbowRecursion from './examples/rainbow-recursion'
 import solarSystem from './examples/solar-system'
+import tomS from './tom-s'
 
 export const elementCreators = [
+    tomS,
     sunWithPlanet,
     sunWithTwoPlanets,
     sunWithPlanetAndMoon,
