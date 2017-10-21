@@ -5,7 +5,7 @@ export default (galaxy) => {
     // Create a sun
     const sun = galaxy.newSun({
         radius: 40,
-        colour: 'maroon'
+        colour: 'purple'
     })
 
     // Create a planet, put it into the sun orbit
