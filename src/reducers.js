@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux'
 
-import { UPDATE_ELEMENTS, ADD_GALAXY, RECORD_FPS } from './actions'
+import { UPDATE_ELEMENTS, ADD_TILE, RECORD_FPS } from './actions'
 
-const defaultStateGalaxies = {}
+const defaultStateTiles = {}
 
-const galaxies = (
-    state = defaultStateGalaxies,
+const tiles = (
+    state = defaultStateTiles,
     action
  ) => {
     switch (action.type) {
-        case ADD_GALAXY:
+        case ADD_TILE:
             return {
                 ...state,
-                [action.galaxyState.id]: {
-                    ...state[action.galaxyState.id],
-                    ...action.galaxyState
+                [action.tileState.id]: {
+                    ...state[action.tileState.id],
+                    ...action.tileState
                 }
             }
         default:
@@ -57,6 +57,6 @@ const elements = (
 
  export default combineReducers({
     elements,
-    galaxies,
+    tiles,
     ui
  })

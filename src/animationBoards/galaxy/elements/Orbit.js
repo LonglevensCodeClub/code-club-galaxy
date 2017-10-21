@@ -1,8 +1,8 @@
-import Element from './Element'
+import Element from './../../Element'
 
 class Orbit extends Element {
-    constructor(galaxyId, centreElement, satellite, userProps) {
-        super('orbit', galaxyId, {
+    constructor(tileId, centreElement, satellite, userProps) {
+        super('orbit', tileId, {
             radiusX: 80,
             radiusY: 60,
             orbitFrequency: 0.1, 

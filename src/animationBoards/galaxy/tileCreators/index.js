@@ -6,7 +6,7 @@ import rocketBetweenPlanets from './examples/rocket-between-planets'
 import rainbowRecursion from './examples/rainbow-recursion'
 import solarSystem from './examples/solar-system'
 
-export const elementCreators = [
+export default [
     sunWithPlanet,
     sunWithTwoPlanets,
     sunWithPlanetAndMoon,

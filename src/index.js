@@ -4,12 +4,11 @@ import { Provider } from 'react-redux'
 //import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware  } from 'redux'
 import reducer from './reducers'
-import { updateElements, addGalaxy, recordFps } from './actions'
+import { updateElements, addTile, recordFps } from './actions'
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import { elementCreators } from './elementCreators'
-import Galaxy from './elements/Galaxy'
+import animationBoards from './animationBoards'
 
 //const loggerMiddleware = createLogger()
 
@@ -24,19 +23,21 @@ const store = createStore(
 const elementCollection = []
 
 // Pass the collection to each element creator
-elementCreators
-    .map(c => {
-        const galaxy = new Galaxy()
-        c(galaxy)
-        store.dispatch(addGalaxy(galaxy.state))
-        return galaxy
-    })
-    .forEach(galaxy => {
-        galaxy.elements.forEach(element => {
-            element.children.forEach(child => elementCollection.push(child))
-            elementCollection.push(element)
+Object.keys(animationBoards).forEach(tileType => {
+    animationBoards[tileType].tiles.forEach(tile => {
+        tile.state.tileType = tileType
+        store.dispatch(addTile(tile.state))
+        
+        const animationElements = []
+
+        tile.elements.forEach(element => {
+            element.children.forEach(child => animationElements.push(child))
+            animationElements.push(element)
         })
+        animationElements.forEach(ae => ae.state.tileType = tileType)
+        animationElements.forEach(ae => elementCollection.push(ae))
     })
+})
 
 const FPS = 30
 const interval = 1000 / FPS

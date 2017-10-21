@@ -1,4 +1,4 @@
-import Element from './Element'
+import Element from './../../Element'
 
 const defaultProps = {
     baseSize: 1,
@@ -7,8 +7,8 @@ const defaultProps = {
 }
 
 class Star extends Element {
-    constructor(galaxyId, userProps) {
-        super('star', galaxyId, defaultProps, userProps)
+    constructor(tileId, userProps) {
+        super('star', tileId, defaultProps, userProps)
     }
     
     /**

@@ -1,4 +1,4 @@
-import Element from './Element'
+import Element from './../../Element'
 
 const defaultProps = {
     size: 5,
@@ -7,8 +7,8 @@ const defaultProps = {
 }
 
 class Rocket extends Element {
-    constructor(galaxyId, userProps) {
-        super('rocket', galaxyId, defaultProps, userProps)
+    constructor(tileId, userProps) {
+        super('rocket', tileId, defaultProps, userProps)
         this.lastFrameTime = 0
     }
     

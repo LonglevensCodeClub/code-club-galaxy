@@ -1,19 +1,7 @@
-import Planet from './Planet'
-import Sun from './Planet'
-import Star from './Star'
-import Rocket from './Rocket'
-
-const Elements = {
-    Planet,
-    Star,
-    Rocket,
-    Sun
-}
-
 let nextId = 0
 
-class Galaxy {
-    constructor() {
+class Tile {
+    constructor(ElementClasses) {
         this.id = nextId
         nextId += 1
 
@@ -21,15 +9,15 @@ class Galaxy {
 
         this.state = {
             id: this.id,
-            name: `Galaxy ${this.id + 1}`,
+            name: `Tile ${this.id + 1}`,
             textColour: 'white'
         }
 
         // Create the functions like newPlanet, newStar etc,
         // They all have the same structure, assuming each class is constructed with an object of user properties
-        Object.keys(Elements).forEach(elementName => {
+        Object.keys(ElementClasses).forEach(elementName => {
             this[`new${elementName}`] = (userProps) => {
-                const element = new Elements[elementName](this.id, userProps)
+                const element = new ElementClasses[elementName](this.id, userProps)
                 this.elements.push(element)
                 return element
             }
@@ -46,4 +34,4 @@ class Galaxy {
     }
 }
 
-export default Galaxy
+export default Tile

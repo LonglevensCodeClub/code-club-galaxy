@@ -1,42 +1,61 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import renderFunctions from './renderFunctions'
+import animationBoards from './animationBoards'
 import { getWidth, getHeight } from './utils'
 
 import './canvas.css';
 
 const NO_FOCUS = -1
+const NO_FILTER = null
 
 class Canvas extends Component {
     constructor(props) {
         super(props)
 
+        this.first = true
         this.state = {
-            focusGalaxy: NO_FOCUS
+            focusTile: NO_FOCUS,
+            filter: NO_FILTER
         }
     }
 
     keyPressed(event){
-        let focusGalaxy = NO_FOCUS
+        let focusTile = this.state.focusTile
+        let filter = this.state.filter
 
-        const numberGalaxies = Object.keys(this.props.galaxies).length
+        const visibleTileIds = Object.keys(this.props.tiles)
+            .filter(tile => (filter === NO_FILTER)
+                        || (this.props.tiles[tile].tileType === filter))
+            .map(tileId => parseInt(tileId, 10)) // keys are taken as strings
+        const visibleIndexOf = visibleTileIds.indexOf(focusTile)
 
         switch(event.keyCode) {
+            case 38: { // up arrow
+                filter = 'galaxy'
+                focusTile = NO_FOCUS
+                break;
+            }
+            case 40: { // down arrow
+                filter = 'geometry'
+                focusTile = NO_FOCUS
+                break;
+            }
             case 37: { // left arrow
-                focusGalaxy = (this.state.focusGalaxy + numberGalaxies - 1) % numberGalaxies
+                focusTile = visibleTileIds[(visibleIndexOf - 1 + visibleTileIds.length) % visibleTileIds.length]
                 break;
             }
             case 39: { // right arrow
-                focusGalaxy = (this.state.focusGalaxy + 1) % numberGalaxies
+                focusTile = visibleTileIds[(visibleIndexOf + 1) % visibleTileIds.length]
                 break;
             }
             default: {
-                focusGalaxy = NO_FOCUS
+                focusTile = NO_FOCUS
+                filter = NO_FILTER
             }
         }
 
-        this.setState({ focusGalaxy })
+        this.setState({ focusTile, filter })
     }
     componentDidMount(){
         document.addEventListener("keydown", this.keyPressed.bind(this), false);
@@ -44,41 +63,43 @@ class Canvas extends Component {
     componentWillUnmount(){
         document.removeEventListener("keydown", this.keyPressed.bind(this), false);
     }
-    
-    renderElements (galaxyId) {
+
+    renderElements (tileId) {
         return Object
             .values(this.props.elements)
-            .filter(e => e.galaxyId === galaxyId)
-            .map(e => renderFunctions[e.elementType](e))
+            .filter(e => e.tileId === tileId)
+            .map(e => animationBoards[e.tileType].renderFunctions[e.elementType](e))
     }
 
-    renderGalaxies() {
+    renderTiles() {
         const smallerDim = Math.min(getWidth(), (getHeight() - 150)) // fiddle factor for app header
         
         let dimension = '250px'
         let transform = ''
-        if (this.state.focusGalaxy > NO_FOCUS) {
+        if (this.state.focusTile > NO_FOCUS) {
             dimension = `${smallerDim}px`
             let scale = smallerDim / 250
             transform = `scale(${scale})`
         }
 
-        return Object.values(this.props.galaxies)
-            .filter(galaxy => (this.state.focusGalaxy === NO_FOCUS)
-                                || (this.state.focusGalaxy === galaxy.id))
-            .map(galaxy => (
-                <svg key={galaxy.id} width={dimension} height={dimension}>
+        return Object.values(this.props.tiles)
+            .filter(tile => (this.state.focusTile === NO_FOCUS)
+                                || (this.state.focusTile === tile.id))
+            .filter(tile => (this.state.filter === NO_FILTER)
+                                || (this.state.filter === tile.tileType))
+            .map(tile => (
+                <svg key={tile.id} width={dimension} height={dimension}>
                     <g transform={transform}>
-                        {this.renderElements(galaxy.id)}
+                        {this.renderElements(tile.id)}
                         <text
                             fontFamily="Helvetica" 
                             fontSize="24" 
-                            fill={galaxy.textColour}
+                            fill={tile.textColour}
                             textAnchor='left'
                             x={20}
                             y={30}
                             >
-                            {galaxy.name}
+                            {tile.name}
                         </text>
                     </g>
                 </svg>
@@ -88,14 +109,17 @@ class Canvas extends Component {
     render (props) {
         return (
             <div className='canvas'>
-                <p className='fps'>{this.props.ui.fps} FPS</p>
-                {this.renderGalaxies()}
+                <p className='meta fps'>{this.props.ui.fps} FPS</p>
+                <p className='meta filter'>Filter: {this.state.filter}</p>
+                <p className='meta focus'>Focus: {this.state.focusTile}</p>
+
+                {this.renderTiles()}
             </div>
         )
     }
 }
 export default connect((state) => ({
     elements: state.elements,
-    galaxies: state.galaxies,
+    tiles: state.tiles,
     ui: state.ui
 }), null)(Canvas)

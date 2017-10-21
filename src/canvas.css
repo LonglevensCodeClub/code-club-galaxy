@@ -3,9 +3,18 @@
     height: 100%;
 }
 
-p.fps {
+p.meta {
     color: white;
+    background-color: none;
     position: absolute;
     padding: 1rem;
+}
+p.fps {
     bottom: 0px;
+}
+p.filter {
+    bottom: 2rem;
+}
+p.focus {
+    bottom: 4rem;
 }

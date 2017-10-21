@@ -1,4 +1,4 @@
-import Element from './Element'
+import Element from './../../Element'
 import Orbit from './Orbit'
 
 const defaultProps = {
@@ -6,8 +6,8 @@ const defaultProps = {
 }
 
 class Planet extends Element {
-    constructor(galaxyId, userProps) {
-        super('planet', galaxyId, defaultProps, userProps)
+    constructor(tileId, userProps) {
+        super('planet', tileId, defaultProps, userProps)
     }
 
     /**
@@ -20,7 +20,7 @@ class Planet extends Element {
     }
 
     orbit(centre, config) {
-        const orbit = new Orbit(this.galaxyId, centre, this, config)
+        const orbit = new Orbit(this.tileId, centre, this, config)
         this.addChild(orbit)
         return this
     }

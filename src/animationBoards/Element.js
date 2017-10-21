@@ -7,16 +7,16 @@ const defaultProps = {
 }
 
 class Element {
-    constructor(elementType, galaxyId, childDefaultProps, userProps) {
+    constructor(elementType, tileId, childDefaultProps, userProps) {
         this.elementType = elementType
-        this.galaxyId = galaxyId
+        this.tileId = tileId
         this.id = nextId
         nextId += 1
         
         this.state = {
             elementType: this.elementType,
             id: this.id,
-            galaxyId
+            tileId
         }
 
         // This must be set for our element

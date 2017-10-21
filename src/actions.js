@@ -5,11 +5,11 @@ export const updateElements = (elements) => ({
     elements
 })
 
-export const ADD_GALAXY = "ADD_GALAXY"
+export const ADD_TILE = "ADD_TILE"
 
-export const addGalaxy = (galaxyState) => ({
-    type: ADD_GALAXY,
-    galaxyState
+export const addTile = (tileState) => ({
+    type: ADD_TILE,
+    tileState
 })
 
 export const RECORD_FPS = "RECORD_FPS"
