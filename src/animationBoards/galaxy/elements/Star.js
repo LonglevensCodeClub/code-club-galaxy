@@ -2,8 +2,10 @@ import Element from './../../Element'
 
 const defaultProps = {
     baseSize: 1,
+    sizeRange: 1,
     size: 3,
-    rate: 1
+    frequency: 0.5,
+    phase: 0
 }
 
 class Star extends Element {
@@ -16,8 +18,8 @@ class Star extends Element {
      * 
      * @param {number} value The speed of the twinkle 
      */
-    setRate(value) {
-        this.setProp('rate', value)
+    setFrequency(value) {
+        this.setProp('frequency', value)
     }
 
     /**
@@ -35,7 +37,9 @@ class Star extends Element {
      * @param {number} time The current time
      */
     updateFrame(time) {
-        let size = this.state.baseSize + Math.abs(((time / (1000 / this.state.rate)) % 5) - 2)
+        const angle = 2 * Math.PI * this.state.frequency * new Date().getTime() / 1000;
+
+        let size = this.state.baseSize + (this.state.sizeRange * Math.sin(angle + this.state.phase))
         
         this.setProp('size', size)
     }

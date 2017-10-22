@@ -13,7 +13,7 @@ export default (galaxy) => {
         radius: 5
     }).orbit(sun, {
         radius: 40, // How far the planet is from the sun
-        orbitFrequency: +0.2 // The speed of rotation, positive = anticlockwise
+        frequency: +0.2 // The speed of rotation, positive = anticlockwise
     })
 
     // Create a planet that orbits the sun
@@ -22,6 +22,6 @@ export default (galaxy) => {
         radius: 5
     }).orbit(sun, {
         radius: 70,
-        orbitFrequency: -0.2 // The speed of rotation, negative = clockwise
+        frequency: -0.2 // The speed of rotation, negative = clockwise
     })
 }

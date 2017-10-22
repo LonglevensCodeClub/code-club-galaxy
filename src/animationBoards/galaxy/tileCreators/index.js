@@ -5,10 +5,12 @@ import sunWithStars from './examples/sun-with-stars'
 import rocketBetweenPlanets from './examples/rocket-between-planets'
 import rainbowRecursion from './examples/rainbow-recursion'
 import solarSystem from './examples/solar-system'
+import apiReference from './examples/api-reference'
 import tomS from './tom-s'
 
 export default [
     tomS,
+    apiReference,
     sunWithPlanet,
     sunWithTwoPlanets,
     sunWithPlanetAndMoon,

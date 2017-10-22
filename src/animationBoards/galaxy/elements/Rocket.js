@@ -1,4 +1,5 @@
 import Element from './../../Element'
+import Orbit from './Orbit'
 
 const defaultProps = {
     size: 5,
@@ -10,6 +11,7 @@ class Rocket extends Element {
     constructor(tileId, userProps) {
         super('rocket', tileId, defaultProps, userProps)
         this.lastFrameTime = 0
+        this.waypoints = []
     }
     
     flyBetween(waypoints) {
@@ -88,6 +90,12 @@ class Rocket extends Element {
         }
 
         this.lastFrameTime = time
+    }
+    
+    orbit(centre, config) {
+        const orbit = new Orbit(this.tileId, centre, this, config)
+        this.addChild(orbit)
+        return this
     }
 }
 

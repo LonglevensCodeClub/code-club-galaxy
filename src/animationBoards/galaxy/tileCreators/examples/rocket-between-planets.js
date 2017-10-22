@@ -14,7 +14,7 @@ export default (galaxy) => {
         radius: 5
     })
     planet1.orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         phase: 0,
         radius: 60,
         colour: 'none'
@@ -25,7 +25,7 @@ export default (galaxy) => {
         colour: 'orange'
     })
     planet2.orbit(sun, {
-        orbitFrequency: -0.05,
+        frequency: -0.05,
         phase: Math.PI,
         radius: 90,
         colour: 'none'

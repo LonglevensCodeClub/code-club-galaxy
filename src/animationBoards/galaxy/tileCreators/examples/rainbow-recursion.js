@@ -14,7 +14,7 @@ export default (galaxy) => {
         });
         if (lastPlanet) {
             planet.orbit(lastPlanet, {
-                orbitFrequency: count * 0.07,
+                frequency: count * 0.07,
                 radius: 30 / count,
                 colour: 'none',
                 phase: 0

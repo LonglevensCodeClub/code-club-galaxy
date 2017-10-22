@@ -11,7 +11,7 @@ export default (galaxy) => {
         colour: 'grey',
         radius: 3
     }).orbit(sun, {
-        orbitFrequency: 0.1,
+        frequency: 0.1,
         radius: 18,
         colour: 'none'
     })
@@ -21,7 +21,7 @@ export default (galaxy) => {
         colour: 'orange',
         radius: 5
     }).orbit(sun, {
-        orbitFrequency: 0.2,
+        frequency: 0.2,
         radius: 24,
         colour: 'none'
     })
@@ -31,7 +31,7 @@ export default (galaxy) => {
         colour: 'green',
         radius: 4
     }).orbit(sun, {
-        orbitFrequency: 0.1,
+        frequency: 0.1,
         radius: 30,
         colour: 'none'
     })
@@ -41,7 +41,7 @@ export default (galaxy) => {
         colour: 'red',
         radius: 3
     }).orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         radius: 34,
         colour: 'none'
     })
@@ -51,7 +51,7 @@ export default (galaxy) => {
         colour: 'orange',
         radius: 10
     }).orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         radius: 45,
         colour: 'none'
     })
@@ -61,7 +61,7 @@ export default (galaxy) => {
         colour: 'lightyellow',
         radius: 8
     }).orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         radius: 55,
         colour: 'none'
     })
@@ -71,7 +71,7 @@ export default (galaxy) => {
         colour: 'lightblue',
         radius: 7
     }).orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         radius: 63,
         colour: 'none'
     })
@@ -81,7 +81,7 @@ export default (galaxy) => {
         colour: 'grey',
         radius: 5
     }).orbit(sun, {
-        orbitFrequency: 0.05,
+        frequency: 0.05,
         radius: 70,
         colour: 'none'
     })

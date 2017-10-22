@@ -5,7 +5,7 @@ class Orbit extends Element {
         super('orbit', tileId, {
             radiusX: 80,
             radiusY: 60,
-            orbitFrequency: 0.1, 
+            frequency: 0.1, 
             phase: Math.random() * 2 * Math.PI,
             colour: 'rgba(255, 255, 255, 0.2)'
         }, userProps)
@@ -30,9 +30,9 @@ class Orbit extends Element {
             this.setPositionY(this.centreElement.state.positionY)
         }
 
-        const angle = 2 * Math.PI * this.state.orbitFrequency * new Date().getTime() / 1000;
-        const xPosition = this.state.radiusX * Math.sin(angle + this.state.phase);
-        const yPosition = this.state.radiusY * Math.cos(angle + this.state.phase);
+        const angle = 2 * Math.PI * this.state.frequency * new Date().getTime() / 1000;
+        const xPosition = this.state.radiusX * Math.cos(angle + this.state.phase);
+        const yPosition = this.state.radiusY * Math.sin(angle + this.state.phase);
         let satelliteX = this.state.positionX + xPosition
         let satelliteY = this.state.positionY + yPosition
         this.satellite.setPositionX(satelliteX)
@@ -72,8 +72,8 @@ class Orbit extends Element {
      * 
      * @param {number} value The frequency of the rotation
      */
-    setOrbitFrequency(value) {
-        this.setProp('orbitFrequency', value)
+    setFrequency(value) {
+        this.setProp('frequency', value)
     }
 
     /**
