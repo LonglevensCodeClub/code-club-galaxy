@@ -1,5 +1,4 @@
 import Element from './../../Element'
-import Orbit from './Orbit'
 
 const defaultProps = {
     radius: 10
@@ -17,12 +16,6 @@ class Planet extends Element {
      */
     setRadius(value) {
         this.setProp('radius', value)
-    }
-
-    orbit(centre, config) {
-        const orbit = new Orbit(this.tileId, centre, this, config)
-        this.addChild(orbit)
-        return this
     }
 }
 

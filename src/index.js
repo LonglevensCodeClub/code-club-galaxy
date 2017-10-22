@@ -20,26 +20,26 @@ const store = createStore(
 )
 
 // Create a collection to hold all the elements
-const elementCollection = []
+const allElements = []
 
-// Pass the collection to each element creator
+// Create a collection to hold all of the animators
+const allAnimators = []
+
+// Extract all elements and animators 
 Object.keys(animationBoards).forEach(tileType => {
     animationBoards[tileType].tiles.forEach(tile => {
         tile.state.tileType = tileType
         store.dispatch(addTile(tile.state))
-        
-        const animationElements = []
 
         tile.elements.forEach(element => {
-            element.children.forEach(child => animationElements.push(child))
-            animationElements.push(element)
+            element.state.tileType = tileType
+            element.animators.forEach(animator => allAnimators.push(animator))
+            allElements.push(element)
         })
-        animationElements.forEach(ae => ae.state.tileType = tileType)
-        animationElements.forEach(ae => elementCollection.push(ae))
     })
 })
 
-const FPS = 30
+const FPS = 25
 const interval = 1000 / FPS
 
 let frames = 0
@@ -49,10 +49,8 @@ setInterval(() => {
 
     let elements = {}
 
-    elementCollection.forEach(e => {
-        e.updateFrame(timeNow)
-        elements[e.id] = e.state
-    })
+    allAnimators.forEach(a => a.updateFrame(timeNow))
+    allElements.forEach(e => elements[e.id] = e.state)
 
     store.dispatch(updateElements(elements))
 

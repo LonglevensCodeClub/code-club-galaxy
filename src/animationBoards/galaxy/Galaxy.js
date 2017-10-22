@@ -5,13 +5,13 @@ import Star from './elements/Star'
 import Rocket from './elements/Rocket'
 
 class Galaxy extends Tile {
-    constructor() {
+    constructor(userProps) {
         super({
             Planet,
             Star,
             Rocket,
             Sun
-        })
+        }, userProps)
     }
 }
 

@@ -43,9 +43,10 @@ export default (galaxy) => {
         let star = galaxy.newStar({
             positionX: Math.random() * 250,
             positionY: 40 + (Math.random() * 200),
-            baseSize: Math.random() * 2, // stars will pulse, 
+            size: Math.random() * 2, // stars will pulse, 
+        }).pulse({
             phase: Math.random() * 2 * Math.PI,
-            sizeRange: 1.0, // how much the star should shrink and grow by
+            amplitude: 1.0, // how much the star should shrink and grow by
             frequency: 0.5, // set the speed of the pulse
         })
         stars.push(star)

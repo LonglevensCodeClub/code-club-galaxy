@@ -1,3 +1,7 @@
+import Orbit from '../animators/Orbit'
+import Pulse from '../animators/Pulse'
+import FlyBetween from '../animators/FlyBetween'
+
 let nextId = 0
 
 const defaultProps = {
@@ -28,20 +32,11 @@ class Element {
             ...userProps
         })
 
-        this.children = []
+        this.animators = []
     }
 
-    addChild(child) {
-        this.children.push(child)
-    }
-
-    /**
-     * Called every frame to give the element the opportunity to animate it's elements.
-     * 
-     * @param {number} time The current time in milliseconds, passed in by the animator 
-     */
-    updateFrame(time) {
-
+    addAnimator(animator) {
+        this.animators.push(animator)
     }
 
     /**
@@ -54,6 +49,20 @@ class Element {
             ...this.state,
             ...values
         }
+    }
+
+    /**
+     * Generic getter for all props, can be used with destructuring
+     */
+    getProps() {
+        return this.state
+    }
+
+    /**
+     * Generic getter for any property
+     */
+    getProp(key) {
+        return this.state[key]
     }
 
     /**
@@ -105,6 +114,24 @@ class Element {
      */
     setColour(value) {
         this.setProp('colour', value)
+    }
+    
+    /**
+     * Animation Functions
+     */
+    orbit(centre, config) {
+        this.addAnimator(new Orbit(this, centre, config))
+        return this
+    }
+
+    flyBetween(waypoints, config) {
+        this.addAnimator(new FlyBetween(this, waypoints, config))
+        return this;
+    }
+
+    pulse(config) {
+        this.addAnimator(new Pulse(this, config))
+        return this;
     }
 }
 

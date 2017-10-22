@@ -10,7 +10,8 @@ export default (galaxy) => {
     for (let x=0; x<10; x++) {
         galaxy.newStar({
             positionX: Math.random() * 250,
-            positionY: 50 + (Math.random() * 200),
+            positionY: 50 + (Math.random() * 200)
+        }).pulse({
             phase: Math.random() * 2 * Math.PI
         })
     }

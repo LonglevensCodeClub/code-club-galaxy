@@ -89,6 +89,7 @@ class Canvas extends Component {
                                 || (this.state.filter === tile.tileType))
             .map(tile => (
                 <svg key={tile.id} width={dimension} height={dimension}>
+                    <rect width="100%" height="100%" fill={tile.backgroundColour} />
                     <g transform={transform}>
                         {this.renderElements(tile.id)}
                         <text

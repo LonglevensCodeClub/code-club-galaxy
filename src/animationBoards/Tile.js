@@ -1,16 +1,22 @@
 let nextId = 0
 
+const defaultProps = {
+    textColour: 'white',
+    backgroundColour: 'black'
+}
+
 class Tile {
-    constructor(ElementClasses) {
+    constructor(ElementClasses, userProps) {
         this.id = nextId
         nextId += 1
 
         this.elements = []
 
         this.state = {
+            ...defaultProps,
+            ...userProps,
             id: this.id,
             name: `Tile ${this.id + 1}`,
-            textColour: 'white'
         }
 
         // Create the functions like newPlanet, newStar etc,

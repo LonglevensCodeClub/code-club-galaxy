@@ -1,14 +1,16 @@
-import Element from './../../Element'
+import Animator from './Animator'
 
-class Orbit extends Element {
-    constructor(tileId, centreElement, satellite, userProps) {
-        super('orbit', tileId, {
-            radiusX: 80,
-            radiusY: 60,
-            frequency: 0.1, 
-            phase: Math.random() * 2 * Math.PI,
-            colour: 'rgba(255, 255, 255, 0.2)'
-        }, userProps)
+const generateDefaultProps = () => ({
+    radiusX: 80,
+    radiusY: 60,
+    frequency: 0.1, 
+    phase: Math.random() * 2 * Math.PI
+})
+
+class Orbit extends Animator {
+    constructor(satellite, centreElement, userProps) {
+        super(generateDefaultProps(), userProps)
+
 
         this.centreElement = centreElement
         this.satellite = satellite
@@ -25,16 +27,11 @@ class Orbit extends Element {
      */
     updateFrame(time) {
         // Track our centre element
-        if (this.centreElement) {
-            this.setPositionX(this.centreElement.state.positionX)
-            this.setPositionY(this.centreElement.state.positionY)
-        }
-
-        const angle = 2 * Math.PI * this.state.frequency * new Date().getTime() / 1000;
-        const xPosition = this.state.radiusX * Math.cos(angle + this.state.phase);
-        const yPosition = this.state.radiusY * Math.sin(angle + this.state.phase);
-        let satelliteX = this.state.positionX + xPosition
-        let satelliteY = this.state.positionY + yPosition
+        const angle = 2 * Math.PI * this.props.frequency * new Date().getTime() / 1000;
+        const xPosition = this.props.radiusX * Math.cos(angle + this.props.phase);
+        const yPosition = this.props.radiusY * Math.sin(angle + this.props.phase);
+        let satelliteX = this.centreElement.state.positionX + xPosition
+        let satelliteY = this.centreElement.state.positionY + yPosition
         this.satellite.setPositionX(satelliteX)
         this.satellite.setPositionY(satelliteY)
     }
