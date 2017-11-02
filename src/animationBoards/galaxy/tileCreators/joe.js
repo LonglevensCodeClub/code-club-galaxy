@@ -3,7 +3,7 @@ export default (galaxy) => {
 
     // Create a sun, assign it to a variable
     const sun = galaxy.newSun({
-        colour: 'orange', // add this comma
+        colour: 'goldenrod', // add this comma
         radius: 40
     })
     
