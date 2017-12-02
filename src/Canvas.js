@@ -73,13 +73,15 @@ class Canvas extends Component {
 
     renderTiles() {
         const smallerDim = Math.min(getWidth(), (getHeight() - 150)) // fiddle factor for app header
-        
-        let dimension = '250px'
+
+        let dimension = '200px'
         let transform = ''
         if (this.state.focusTile > NO_FOCUS) {
             dimension = `${smallerDim}px`
             let scale = smallerDim / 250
             transform = `scale(${scale})`
+        } else {
+            transform = `scale(0.8)`
         }
 
         return Object.values(this.props.tiles)
