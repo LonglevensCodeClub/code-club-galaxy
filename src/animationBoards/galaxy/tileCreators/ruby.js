@@ -1,40 +1,36 @@
 export default (galaxy) => {
-	galaxy.setName( 'RubySolarSystem')
+	// Your code all goes inside this function
+	
+	galaxy.setName ( 'Ruby Lou')
+	
 	const sun = galaxy.newSun({
+		colour: 'purple',
+		radius: 30,
+		positionX: 70
+		
+    })
+        
+    const planet = galaxy.newPlanet({
 		colour: 'red',
-		radius: 30
+		radius: 15	
 	})
-
-	// Create the planet
-	const bluePlanet = galaxy.newPlanet({
-		colour: 'blue',
-		radius: 25,
+	planet.orbit(sun, {
+		radiusX: 55,
 	})
-
-	// Put the planet in orbit
-	bluePlanet.orbit(sun)
-
-	const pink = galaxy.newPlanet({
-		colour: 'pink',
-		radius: 15
+	
+	const Ruby = galaxy.newSun({
+		colour: 'pink'
 	})
-	pink.orbit (bluePlanet)
-
-   // how quick or how slow planet moves
-    pink.orbit (sun, {
-		frequency: -0.02,
-		radiusX: 70,
-		radiusY: 88,
-		Phase: Math.PI / 40
-	})
-
-	const sunColours = ['red', 'coral', 'indigo']
-	let i = 0
-
+	
+	const sunColours = ['lightblue', 'purple']
+	let i =0
+	
 	setInterval(() => {
-		sun.setColour (sunColours[i])
+		sun.setColour(sunColours[i])
 		i += 1
 		i %= sunColours.length
 	}, 500)
-		
+	
 }
+ 
+
