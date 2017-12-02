@@ -29,15 +29,5 @@ export default (galaxy) => {
 		
 	})
 	// The sun will rotate through these colours
-	const sunColours = [ 'red', 'darked', 'indigo']
-	
-	
-	
-
-
-	
-	
-	
-	
-	
+	//const sunColours = [ 'red', 'darked', 'indigo']
 }

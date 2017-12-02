@@ -26,7 +26,7 @@ export default (galaxy) => {
 	let i =0
 	
 	setInterval(() => {
-		sun.setColour(sunColours[i])
+		Ruby.setColour(sunColours[i])
 		i += 1
 		i %= sunColours.length
 	}, 500)
